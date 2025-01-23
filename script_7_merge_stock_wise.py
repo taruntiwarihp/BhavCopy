@@ -22,9 +22,7 @@ csv_files = [s for s in csv_files if not any(index in s for index in "/INDEX")]
 # csv_files = [f for f in csv_files if start_date <= f.split('\\')[-1][:10] <= end_date]
 
 os.makedirs('stocks_by_name', exist_ok=True)
-list_target_ticker = list_target_ticker[:1500]
-print(list_target_ticker[0])
-print(list_target_ticker[-1])
+
 for target_ticker in tqdm(list_target_ticker, desc="Processing", colour='cyan'):
     
     files = os.listdir("stocks_by_name/")

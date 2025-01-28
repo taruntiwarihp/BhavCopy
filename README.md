@@ -1,16 +1,17 @@
-How to run
+Its an Automated script that will download 
+
+python get_nse_bse_sme.py
 
 from 
-2017-01-01
-2025-01-17 # till extracted data
+2024-01-01
+Present # till extracted data
 
 
-python script_3_Getbhavcopy_BSE_Eq_New.py
-python script_4_Final_Bhavcopy_index_2024.py
-python script_5_Getbhavcopy_NSE_SME.py
+Getbhavcopy_BSE_Eq_New.py                           script1 : it will download BSE data from 2024-01-01 to present
+Final_Bhavcopy_index_2024.py                        script2 : it will download NSE and Index data from 2024-01-01 to present
+Getbhavcopy_NSE_SME.py                              script3 : it will download NSE-SMI data from 2024-01-01 to present
+merge_date_wise.py                                  script4 : it will merge the complete data date wise
+merge_stock_wise.py                                 script5 : it will merge the data name wise
 
-python script_6_merge_date_wise.py # change line 16 and 17
-
-python script_7_merge_stock_wise.py # change 5,6,7 line, start, end and latest-date
 
 python script_8_line_graph.py # to get graphs

@@ -193,3 +193,4 @@ stocks_by_name
 stock_record
 old_stocks_by_name
 *.csv
+stocks_graph

@@ -34,6 +34,6 @@ def make_line_graph():
                         xaxis2_title='Date', yaxis2_title='Volume',
                         showlegend=False)  # Hide legend for subplot independence
 
-        name = stock.split("/")[-1].replace("csv", "png")
+        name = stock.split("\\")[-1].replace("csv", "png")
         fig.write_image(f"stocks_graph\line\{name}")
         fig.write_html(f"stocks_graph\line\{name.replace('png', 'html')}")

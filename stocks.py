@@ -11,6 +11,7 @@ from line_graph import make_line_graph
 
 
 START_DATE = "2024-01-01"
+# RUN after 7PM
 
 Bhavcopy_Download_Folder = "temp1\Data_BSE_temporary"
 Final_Bhavcopy_Folder = "temp1\Getbhavcopy_BSE"
@@ -139,4 +140,18 @@ merge_data_date_wise(start_date_str, end_date_str)
 # will merge date data name wise
 merge_stock_name_wise(start_date_str, end_date_str)
 # Draw graph
+
+import os
+try:
+    # Specify the directory path
+    directory_path = "stocks_by_name"
+    # Remove files containing ".csv.csv"
+    for filename in os.listdir(directory_path):
+        if ".csv.csv" in filename:
+            os.remove(os.path.join(directory_path, filename))
+except:
+    print("No duplicates")
+
+import shutil
+shutil.rmtree("stocks_graph")
 make_line_graph()

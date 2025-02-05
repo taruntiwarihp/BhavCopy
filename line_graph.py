@@ -36,4 +36,4 @@ def make_line_graph():
 
         name = stock.split("\\")[-1].replace("csv", "png")
         fig.write_image(f"stocks_graph\line\{name}")
-        fig.write_html(f"stocks_graph\line\{name.replace('png', 'html')}")
+        # fig.write_html(f"stocks_graph\line\{name.replace('png', 'html')}")

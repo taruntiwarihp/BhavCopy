@@ -16,7 +16,7 @@ def merge_stock_name_wise(start_date_str, end_date_str):
     list_target_ticker = [s if '(' in s and ')' in s else s.replace('(', '').replace(')', '') for s in list_target_ticker]
 
     csv_files = glob("stock_record\\*\\*.csv")
-    csv_files = [s for s in csv_files if not any(index in s for index in "/INDEX")]
+    # csv_files = [s for s in csv_files if not any(index in s for index in "/INDEX")]
 
     csv_files = [f for f in csv_files if start_date_str <= f.split('\\')[-1][:10] <= end_date_str]
 

@@ -34,4 +34,15 @@ if new_rows:
 is_unique = len(df2['Exchange_symb']) == df2['Exchange_symb'].nunique()
 print(is_unique)
 
+
+df2['combined_text'] = None
+
+for i, rows in df2.iterrows():
+    if pd.notna(rows['Screener_Link']) and rows['Screener_Link'] != '':
+        link = rows['Screener_Link'].replace("https://www.screener.in/", "")
+        link = link.replace("company", "").replace("consolidated", "").replace("/", "")
+        df2.at[i, 'combined_text'] = f"{rows['Exchange_symb']} {rows['Exchange_Name']} {rows['Screener_Name']} {link}"
+    
+    
+df2['combined_text'] = df2['combined_text'].fillna('')  
 df2.to_csv("database.csv", index=False)

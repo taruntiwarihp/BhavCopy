@@ -1,8 +1,8 @@
 import pandas as pd
 
 
-df1 = pd.read_csv("stock_record\\2025\\2025-02-05.csv") # change with latest date datadata
-df2 = pd.read_csv("database - database.csv")
+df1 = pd.read_csv("stock_record\\2025\\2025-02-21.csv") # change with latest date datadata
+df2 = pd.read_csv("Feb-database - Feb-database.csv")
 
 df2['Screener_Name'] = df2['Screener_Name'].str.strip()
 # Check for rows that need to be updated or added in df2

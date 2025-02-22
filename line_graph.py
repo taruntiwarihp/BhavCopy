@@ -4,11 +4,12 @@ from plotly.subplots import make_subplots
 from glob import glob
 import os
 
-stock_data = glob("stocks_by_name\*.csv") 
-os.makedirs("stocks_graph/line", exist_ok=True) 
+
 
 def make_line_graph():
 
+    stock_data = glob("stocks_by_name\*.csv") 
+    os.makedirs("stocks_graph/line", exist_ok=True) 
     for stock in stock_data:
         df_1 = pd.read_csv(stock)
         df = df_1.drop_duplicates(subset='TradDt', keep='first')

@@ -1,8 +1,8 @@
 import pandas as pd
+import numpy as np
 
-
-df1 = pd.read_csv("stock_record\\2025\\2025-02-21.csv") # change with latest date datadata
-df2 = pd.read_csv("Feb-database - Feb-database.csv")
+df1 = pd.read_csv("stock_record\\2025\\2025-03-12.csv") # change with latest date datadata
+df2 = pd.read_csv("March-database - database.csv")
 
 df2['Screener_Name'] = df2['Screener_Name'].str.strip()
 # Check for rows that need to be updated or added in df2
@@ -44,5 +44,13 @@ for i, rows in df2.iterrows():
         df2.at[i, 'combined_text'] = f"{rows['Exchange_symb']} {rows['Exchange_Name']} {rows['Screener_Name']} {link}"
     
     
-df2['combined_text'] = df2['combined_text'].fillna('')  
-df2.to_csv("database.csv", index=False)
+# df2['combined_text'] = df2['combined_text'].fillna('')  
+
+
+df2 = df2.replace('', np.nan)
+
+mask = df2[['Exchange_Name', 'Screener_Name']].apply(lambda series: series.str.contains(" - |ETF|NIFTY|Mutual Fund", na=False, case=False))
+df2_filtered = df2[~mask.any(axis=1)]
+df2_filtered = df2_filtered.sort_values(by=['Screener_Name','Screener_Link'], ascending=True, na_position='last')
+
+df2_filtered.to_csv("database.csv", index=False)

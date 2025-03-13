@@ -7,7 +7,7 @@ from Final_Bhavcopy_index_2024_NSE import download_nse_and_index_data
 from Getbhavcopy_NSE_SME import download_nse_smi_data
 from merge_date_wise import merge_data_date_wise
 from merge_stock_wise import merge_stock_name_wise
-from line_graph import make_line_graph
+# from line_graph import make_line_graph
 
 
 START_DATE = "2024-01-01"
@@ -145,13 +145,24 @@ import os
 try:
     # Specify the directory path
     directory_path = "stocks_by_name"
-    # Remove files containing ".csv.csv"
+    # Remove files containing ".csv.csv
     for filename in os.listdir(directory_path):
         if ".csv.csv" in filename:
+
+            print("removing")
             os.remove(os.path.join(directory_path, filename))
 except:
     print("No duplicates")
 
-import shutil
-shutil.rmtree("stocks_graph")
-make_line_graph()
+# import shutil
+# shutil.rmtree("stocks_graph")
+# make_line_graph()
+
+# 2025-03-06-NSE-SME.csv : Date column added
+# 2025-03-07-NSE-SME.csv : Date column added
+# 2025-03-06-NSE-SME.csv : Data Structure converted to getbhavcopy
+# 2025-03-07-NSE-SME.csv : Data Structure converted to getbhavcopy
+# Bhavcopy file: 2025-03-06-NSE-SME.csv copied to temp3/Getbhavcopy_NSE_SME
+# Bhavcopy file: 2025-03-07-NSE-SME.csv copied to temp3/Getbhavcopy_NSE_SME
+# 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:08<00:00,  4.02s/it]
+# ERROR, FILE NOT FOUND stock_record\2025\2025-03-09.csv

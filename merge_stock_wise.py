@@ -1,15 +1,23 @@
-import os
+import os, re
 from glob import glob
 import pandas as pd
 from tqdm import tqdm
+from datetime import datetime
+
+pattern = re.compile(r"(\d{4})-(\d{2})-(\d{2}).csv$")
 
 def merge_stock_name_wise(start_date_str, end_date_str):
 
+    
+    global pattern
     year = end_date_str.split("\\")[-1].split("-")[0]
-    month = end_date_str.split("\\")[-1].split("-")[1]
-    date = end_date_str.split("\\")[-1].split("-")[2]
+    # month = end_date_str.split("\\")[-1].split("-")[1]
+    # date = end_date_str.split("\\")[-1].split("-")[2]
 
-    path = f"stock_record\\{year}\\{year}-{month}-{date}.csv"
+    # path = f"stock_record\\{year}\\{year}-{month}-{date}.csv"
+    file_paths = glob(f"stock_record\\{year}\\*")
+    path = max(file_paths,
+                key=lambda f: datetime(*map(int, pattern.search(f).groups())))
     try:
         df = pd.read_csv(path)
 

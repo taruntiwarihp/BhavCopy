@@ -25,10 +25,10 @@ if os.path.exists(Bhavcopy_Download_Folder):
             os.rmdir(os.path.join(root, dir))
     os.rmdir(Bhavcopy_Download_Folder)
 
-os.makedirs(Bhavcopy_Download_Folder)    
+os.makedirs(Bhavcopy_Download_Folder, exist_ok=True)    
 
 if not os.path.exists(Final_Bhavcopy_Folder):
-    os.makedirs(Final_Bhavcopy_Folder)
+    os.makedirs(Final_Bhavcopy_Folder, exist_ok=True)
 
 if os.path.isdir(Final_Bhavcopy_Folder) and os.listdir(Final_Bhavcopy_Folder):
 
@@ -124,11 +124,11 @@ if os.path.exists(Bhavcopy_Download_Folder):
     os.rmdir(Bhavcopy_Download_Folder)
 
 # Create the folder again
-os.makedirs(Bhavcopy_Download_Folder)
+os.makedirs(Bhavcopy_Download_Folder, exist_ok=True)
 
 Final_Bhavcopy_Folder = "temp3/Getbhavcopy_NSE_SME"
 if not os.path.exists(Final_Bhavcopy_Folder):
-    os.makedirs(Final_Bhavcopy_Folder)
+    os.makedirs(Final_Bhavcopy_Folder, exist_ok=True)
 
 
 download_nse_smi_data(date_range, Bhavcopy_Download_Folder, Final_Bhavcopy_Folder)
@@ -138,31 +138,9 @@ download_nse_smi_data(date_range, Bhavcopy_Download_Folder, Final_Bhavcopy_Folde
 # will merge data date wise
 merge_data_date_wise(start_date_str, end_date_str)
 # will merge date data name wise
+
 merge_stock_name_wise(start_date_str, end_date_str)
 # Draw graph
 
-import os
-try:
-    # Specify the directory path
-    directory_path = "stocks_by_name"
-    # Remove files containing ".csv.csv
-    for filename in os.listdir(directory_path):
-        if ".csv.csv" in filename:
-
-            print("removing")
-            os.remove(os.path.join(directory_path, filename))
-except:
-    print("No duplicates")
-
-# import shutil
-# shutil.rmtree("stocks_graph")
-# make_line_graph()
-
-# 2025-03-06-NSE-SME.csv : Date column added
-# 2025-03-07-NSE-SME.csv : Date column added
-# 2025-03-06-NSE-SME.csv : Data Structure converted to getbhavcopy
-# 2025-03-07-NSE-SME.csv : Data Structure converted to getbhavcopy
-# Bhavcopy file: 2025-03-06-NSE-SME.csv copied to temp3/Getbhavcopy_NSE_SME
-# Bhavcopy file: 2025-03-07-NSE-SME.csv copied to temp3/Getbhavcopy_NSE_SME
-# 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:08<00:00,  4.02s/it]
-# ERROR, FILE NOT FOUND stock_record\2025\2025-03-09.csv
+from line_graph import make_line_graph
+make_line_graph()

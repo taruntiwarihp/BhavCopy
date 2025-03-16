@@ -15,7 +15,6 @@ SYMBOL    SECURITY  DATE  OPEN_PRICE  HIGH_PRICE  LOW_PRICE  CLOSE_PRICE  NET_TR
 
 save_pth = "stock_record"
 
-
 def merge_nse_and_bse(df):
     # Finding duplicated rows based on 'TckrSymb'
     duplicates = df[df.duplicated(subset='TckrSymb', keep=False)]
@@ -24,6 +23,7 @@ def merge_nse_and_bse(df):
     for tckr in duplicates['TckrSymb'].unique():
         group = duplicates[duplicates['TckrSymb'] == tckr]
         if len(group) > 1:
+            
             # Combine 'FinInstrmNm' and sum 'TtlTradgVol'
             combined_names = '@'.join(group['FinInstrmNm'])
             combined_volume = group['TtlTradgVol'].sum()
@@ -32,6 +32,7 @@ def merge_nse_and_bse(df):
             first_index = group.index[0]
             df.loc[first_index, 'FinInstrmNm'] = combined_names
             df.loc[first_index, 'TtlTradgVol'] = combined_volume
+            df.loc[first_index, 'exchange'] = "-".join(group['exchange'].unique())
 
             # Drop all other occurrences
             df = df.drop(group.index[1:])
@@ -105,8 +106,8 @@ def merge_data_date_wise(start_date_str, end_date_str):
             result = merge_nse_and_bse(result)
             result.to_csv(save_n, index=False)
         
-        if df4_2_lst:
-            save_n = f"{save_pth}/{year}/"
-            os.makedirs(save_n, exist_ok=True)
-            save_n = f"{save_pth}/{year}/INDEX_{year}-{month}-{date}.csv"
-            df4_2.to_csv(save_n, index=False)
+        # if df4_2_lst:
+        #     save_n = f"{save_pth}/{year}/"
+        #     os.makedirs(save_n, exist_ok=True)
+        #     save_n = f"{save_pth}/{year}/INDEX_{year}-{month}-{date}.csv"
+        #     df4_2.to_csv(save_n, index=False)

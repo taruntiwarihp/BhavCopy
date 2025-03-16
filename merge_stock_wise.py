@@ -54,8 +54,8 @@ def merge_stock_name_wise(start_date_str, end_date_str):
                     except:
                         pass
 
-                    merged_data = merged_data[['TradDt', 'OpnPric', 'HghPric', 'LwPric', 'ClsPric', 'TtlTradgVol']]
-                    merged_data.columns = ['TradDt', 'OpnPric', 'HghPric', 'LwPric', 'ClsPric', 'TtlTradgVol']
+                    merged_data = merged_data[['TradDt', 'OpnPric', 'HghPric', 'LwPric', 'ClsPric', 'TtlTradgVol', 'exchange']]
+                    merged_data.columns = ['TradDt', 'OpnPric', 'HghPric', 'LwPric', 'ClsPric', 'TtlTradgVol', 'exchange']
 
                     target_ticker = target_ticker.replace("/", "_").replace(":", "_")
 
